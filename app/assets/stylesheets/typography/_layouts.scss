@@ -1,0 +1,13 @@
+.container,
+.grid {
+  margin: 0 auto;
+  width: 960px;
+}
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}

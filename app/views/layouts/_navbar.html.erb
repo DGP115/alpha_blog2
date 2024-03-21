@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to "Alpha Blog", root_path, class: "navbar-brand", id: "logo" %>
+
+    <!--This button is the hamburger button that navbar functions collapse into on small screens -->
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Articles
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Articles Listing", articles_path, class: "dropdown-item" %></li>
+            <li><%= link_to "New Article", new_article_path, class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="nav-item ml-auto">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
+</nav>
