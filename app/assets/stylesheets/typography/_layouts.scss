@@ -11,3 +11,9 @@
 #sticky-footer {
   flex-shrink: none;
 }
+
+#page-background {
+  background: -webkit-linear-gradient(to right,#bdbec4, #acaee0);
+  background: -moz-linear-gradient(to right,#bdbec4, #acaee0);
+  background: linear-gradient(to right,#bdbec4, #acaee0);
+}

@@ -1,0 +1,19 @@
+<% if @article.errors.any? %>
+  <div class="container col-6">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <h6 class="alert-heading">Oops!  The following error(s) occurred:</h6>
+
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+<% end %>
+
+
+
