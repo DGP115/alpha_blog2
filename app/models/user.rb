@@ -15,4 +15,7 @@ class User < ApplicationRecord
   # Associations
   has_many :articles, dependent: :destroy
 
+  # To use the manual security model provided by bcrypt
+  # See https://guides.rubyonrails.org/active_model_basics.html#securepassword
+  has_secure_password
 end
