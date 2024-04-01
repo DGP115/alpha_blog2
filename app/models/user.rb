@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 # Class to model User of Alpha Blog 2
+
+
 class User < ApplicationRecord
   # Validations
+
   before_save { self.email_address = email_address.downcase }
   validates :username, presence: true,
                        uniqueness: { case_sensitive: false },

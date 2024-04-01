@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
     else
       # The saving of the new article has failed, so:
       # 1:  re-render the new form on which we loop through the
-      #     error messages associated with teh attamopt to save the new article
+      #     error messages associated with the attempt to save the new article
       # 2:  NOTE:  ", status: :unprocessable_entity" is needed by turbo_streams
       render 'new', status: :unprocessable_entity
     end
