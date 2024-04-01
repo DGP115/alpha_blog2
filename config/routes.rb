@@ -29,4 +29,9 @@ Rails.application.routes.draw do
   # want the "new" method to be invoked by signup [as above] so we can omit it from the
   # resources statement
   resources :users, except: [:new]
+
+  # Routes for Sessions
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
 end

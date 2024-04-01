@@ -23,12 +23,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    # Get the articles authored by this user
+    @articles = @user.articles.paginate(page: params[:page], per_page: 5)
+                     .order(created_at: :desc)
+  end
 
   def edit; end
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
   end
 
   def destroy
@@ -49,7 +53,7 @@ class UsersController < ApplicationController
     if @user.update(whitelist_params)
       #  Use flash helper to display feedback message
       flash[:notice] = 'User profile successfully updated'
-      redirect_to articles_path
+      redirect_to users_path(@user)
     else
       # The update of the user has failed, so:
       # 1:  re-render the form on which we loop through the

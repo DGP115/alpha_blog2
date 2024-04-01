@@ -1,3 +1,11 @@
 <h2 class="text-center mt-2">Our Bloggers</h2>
 
+<div class="apple_pagination">
+  <%= will_paginate @users, container: false %>
+</div>
+
 <%= render 'users/user' %>
+
+<div class="apple_pagination">
+  <%= will_paginate @users, container: false %>
+</div>

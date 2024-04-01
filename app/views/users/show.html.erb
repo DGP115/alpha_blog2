@@ -4,10 +4,22 @@
   <%= avatar_for(@user, size:('100x100')) %>
 </div>
 
-    <%= link_to 'Update Your Profile', edit_user_path(@user.id),
-                 class: "btn btn-primary btn-sm" %>
+<div class="text-center mt-2 mb-2">
+  <%= link_to 'Update Your Profile', edit_user_path(@user.id),
+              class: "btn btn-outline-dark" %>
+</div>
 
 <% if @user.articles.count > 0 %>
-  <h5 class="text-center border mt-4">Articles by <%= @user.username %>:</h5>
+  <h5 class="text-center mt-4">Articles by <%= @user.username %>:</h5>
+
+  <div class="apple_pagination">
+    <%= will_paginate @articles, container: false %>
+  </div>
+
+  <%= render 'articles/article_list' %>
+
+  <div class="apple_pagination">
+    <%= will_paginate @articles, container: false %>
+  </div>
 
 <% end %>

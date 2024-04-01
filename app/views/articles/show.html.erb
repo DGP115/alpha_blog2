@@ -5,7 +5,11 @@
       <div class="card text-center shadow mb-2 bg-white rounded">
 
         <div class="card-header fst-italic">
-          by: <%= @article.user.username.capitalize if @article.user %>
+          <% if @article.user %>
+            by: <%= @article.user.username.capitalize %>
+            <%= link_to avatar_for(@article.user, size:('100x100')),
+                        user_path(@article.user) %>
+          <% end %>
         </div>
 
         <div class="card-body">

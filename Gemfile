@@ -71,3 +71,4 @@ gem 'dockerfile-rails', '>= 1.6', :group => :development
 
 gem 'sassc-rails'
 gem 'bootstrap'
+gem 'will_paginate', '~> 4.0'

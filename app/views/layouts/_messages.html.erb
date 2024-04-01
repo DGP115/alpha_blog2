@@ -5,14 +5,14 @@
       <% if msg_type == 'notice' %>
         <% message_display_type = 'alert-success' %>
       <% elsif msg_type == 'warning' %>
-        <% message_display_type = 'alert-success' %>
+        <% message_display_type = 'alert-warning' %>
       <% else %>
         <% message_display_type = 'alert-secondary' %>
       <% end %>
 
       <div class="alert <%= message_display_type %> alert-dismissible fade show" role="alert">
 
-        &#9757; <%= msg_type.capitalize %>: <%= msg %>
+        &#9757; <%= msg %>
 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
