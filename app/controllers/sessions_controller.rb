@@ -13,8 +13,8 @@ class SessionsController < ApplicationController
         #  to this user session.  [i.e. So, if need be, our app would remember some user-based
         #  setup until th euser logged out]
         session[:user_id] = user.id
-        flash[:notice] = "Welcome #{user.username.capitalize}.  You have successfully logged in"
-        redirect_to users_path(user)
+        flash[:notice] = "Welcome #{user.username.titleize}.  You have successfully logged in"
+        redirect_to user_path(user)
       else
         flash.now[:warning] = 'The password entered is incorrect.  Try again'
         render 'sessions/new', status: :unprocessable_entity

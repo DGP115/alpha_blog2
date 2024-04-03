@@ -33,5 +33,7 @@ Rails.application.routes.draw do
   # Routes for Sessions
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
+
+  # Tried "delete 'Logout', to 'sessions#destry" but that didn't work
   get 'logout', to: 'sessions#destroy'
 end

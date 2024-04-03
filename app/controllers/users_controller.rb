@@ -3,6 +3,7 @@
 # Class for users controller
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def new
     @user = User.new
@@ -11,7 +12,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(whitelist_params)
     if @user.save
-      #  Use flash helper to display feedback message
+      # Log the succesfully-created user into the app
+      session[:user_id] = @user.id
+      # Use flash helper to display feedback message
       flash[:notice] = "Welcome #{@user.username.capitalize}"
       redirect_to articles_path
     else
@@ -37,6 +40,9 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.delete
+      #  Log the deleted user out only if they initiated the account deletion.
+      #  [Since admin users can delete accounts for other users]
+      session[:user_id] = nil if @user == current_user
       #  Use flash helper to display feedback message
       flash[:notice] = 'User profile successfully deleted'
       redirect_to articles_path
@@ -71,5 +77,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    return if current_user == @user || current_user.admin
+
+    flash[:warning] = 'You can only alter your own profile'
+    redirect_to user_path(@user)
   end
 end

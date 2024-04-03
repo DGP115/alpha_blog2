@@ -8,22 +8,27 @@
 
           <div class="card-header fst-italic">
             <% if article.user %>
-              by: <%= link_to article.user.username.capitalize,
+              by: <%= link_to article.user.username.titleize,
                       user_path(article.user) %>
             <% end %>
           </div>
 
           <div class="card-body">
             <h5 class="card-title">
-              <%= link_to article.title.capitalize,
+              <%= link_to article.title.titleize,
                           article_path(article),
                           class: 'link-primary text-decoration-none' %>
               </h5>
             <p class="card-text"><%= truncate(article.description, length: 50) %></p>
-            <%= link_to "Show", article_path(article), class: "btn btn-outline-primary" %>
-            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-secondary" %>
-            <%= link_to "Delete", article_path(article), class: "btn btn-outline-danger",
-                        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            <%= link_to "View", article_path(article), class: "btn btn-outline-primary" %>
+
+            <% if logged_in? && (current_user == article.user || current_user.admin) %>
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-secondary" %>
+              <%= button_to "Delete", article,
+                                      class: "btn btn-outline-danger",
+                                      method: :delete,
+                                      onclick: "return confirm('Are you sure?')" %></li>
+            <% end %>
           </div>
 
           <div class="card-footer text-muted">

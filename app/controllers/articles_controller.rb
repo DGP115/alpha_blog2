@@ -3,6 +3,9 @@
 # Class for articles controller
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
+  #  Note method require_user is defined in ApplicationController
+  before_action :require_user, except: %i[show index]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
@@ -18,6 +21,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(whitelist_params)
+    @article.user = current_user
     if @article.save
       #  Use flash helper to display feedback message
       flash[:notice] = 'Article successfully created'
@@ -69,5 +73,12 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def require_same_user
+    return if current_user == @article.user || current_user.admin
+
+    flash[:warning] = 'You can only alter your own article'
+    redirect_to article_path(@article)
   end
 end

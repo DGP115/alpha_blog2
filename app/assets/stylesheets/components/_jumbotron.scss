@@ -10,3 +10,23 @@
   background-size: cover;
   height: 400px;
 }
+
+.btn-signup {
+  border-radius: 10px !important;
+  border: 2px !important;
+  color: blue !important;
+  background-color: wheat !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  font-weight: 400 !important;
+  letter-spacing: .5px !important;
+  margin: 0 !important;
+  position: relative !important;
+  top: 200px !important;
+  left: -10px !important;
+}
+
+.btn-signup:hover {
+  color:  wheat !important;
+  background-color: blue !important;
+}
