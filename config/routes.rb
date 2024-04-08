@@ -36,4 +36,7 @@ Rails.application.routes.draw do
 
   # Tried "delete 'Logout', to 'sessions#destry" but that didn't work
   get 'logout', to: 'sessions#destroy'
+
+  #  Routes for Categories
+  resources :categories
 end

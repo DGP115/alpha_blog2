@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
 
   def new
     # Although it doesn't get used [since we create an article instance in the update method]
-    # we have to create an object here because the flash message error checking needs an object to check
+    # we have to create an object here because the flash message error checking needs an object to # check
     @article = Article.new
   end
 
@@ -68,7 +68,8 @@ class ArticlesController < ApplicationController
   private
 
   def whitelist_params
-    params.require(:article).permit(:title, :description)
+    # DGP:  It seems odd to me that colon is after category_ids
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
 
   def set_article

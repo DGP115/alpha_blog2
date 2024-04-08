@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 # Class to model User of Alpha Blog 2
-
-
 class User < ApplicationRecord
   # Validations
 

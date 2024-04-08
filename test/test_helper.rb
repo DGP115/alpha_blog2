@@ -1,6 +1,8 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
+# frozen_string_literal: true
+
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
 
 module ActiveSupport
   class TestCase
@@ -11,5 +13,10 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    #  My app-specific test helper method(s)
+    def sign_in_as(user)
+      post login_path, params: { session: { email_address: user.email_address,
+                                            password: 'password' } }
+    end
   end
 end

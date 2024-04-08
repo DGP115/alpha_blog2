@@ -32,10 +32,19 @@
           </div>
 
           <div class="card-footer text-muted">
-            <small>
-              Created: <%=time_ago_in_words(article.created_at)%> ago.
-              Edited: <%=time_ago_in_words(article.updated_at)%> ago.
-            </small>
+            <% if article.categories.any? %>
+					    <!--The line below is some Rails magic to ease the display of an array of
+					    objects. The render function will look for a partial called "_category"
+							and pass to it each category object given by @articles.categories.
+							It is like looping through @articles.categories.each do.
+              AND, amazingly enough, Rails will look for the partial in all views folders
+              so we can out it with the other categories views -->
+						  <strong>Categories:</strong><%= render article.categories %>
+            <% end %>
+            <div class="small mt-1 text-center">
+              <p>Created: <%=time_ago_in_words(article.created_at)%> ago.<br>
+                Edited: <%=time_ago_in_words(article.updated_at)%> ago. </p>
+            </div>
           </div>
 
         </div>
